@@ -10,7 +10,7 @@ pipeline{
         }
         stage("Trivy file System"){
             steps{
-                sh "trivy fs . -o reuslts.json
+                sh "trivy fs . -o reuslts.json"
             }
         }
         stage("Build"){
