@@ -8,6 +8,11 @@ pipeline{
                 git url: "https://github.com/rudracloud7/two-tier-flask-app.git" , branch: "master"
             }    
         }
+        stage("Trivy file System"){
+            steps{
+                sh "trivy fs . -o reuslts.json
+            }
+        }
         stage("Build"){
             steps{
                 sh "docker build -t two-tier-flask-app ."
