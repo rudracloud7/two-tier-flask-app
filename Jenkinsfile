@@ -1,3 +1,4 @@
+@Library("Shared") _
 pipeline{
     
     agent { label "dev"};
@@ -5,7 +6,9 @@ pipeline{
     stages{
         stage("Code"){
             steps{
-                git url: "https://github.com/rudracloud7/two-tier-flask-app.git" , branch: "master"
+                scripts{
+                    clone{"https://github.com/rudracloud7/two-tier-flask-app.git", branch: "master"}
+                }
             }    
         }
         stage("Trivy file System"){
