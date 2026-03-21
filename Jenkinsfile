@@ -1,20 +1,21 @@
 @Library("Shared") _
 pipeline{
     
-    agent { label "dev"};
+    agent { label "dev"}
     
     stages{
         stage("Code"){
             steps{
-                scripts{
+                script{
                      git url: "https://github.com/rudracloud7/two-tier-flask-app.git", branch: "master"
                 }
             }    
         }
         stage("Trivy file System"){
             steps{
-                scripts{
+                script{
                     trivy_fs()
+                }
             }
         }
         stage("Build"){
@@ -29,8 +30,8 @@ pipeline{
         }
         stage("Push to Docker Hub"){
             steps{
-                scripts{
-                    docker_push("dockerHubCreds","two-tier-flask")
+                script{
+                    docker_push("dockerHubCreds","two-tier-flask-app")
                 }
             }
         }
